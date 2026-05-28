@@ -4,33 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O Quiz dos países</title>
+    <link rel="stylesheet" href="game.css">
 </head>
 <body>
-    <h1 style="font-size: 100px;"></h1>
-    <form id="form">
-        <div class="options">
-            <input type="radio" id="A" name="country" value="A">
-            <label for="A" id="LabelA">A -</label>
-        </div>
+    <h1>Que país é esse?</h1>
 
-        <div class="options"></div>    
-            <input type="radio" id="B" name="country" value="B">
-            <label for="B" id="LabelB">B -</label>
-        </div class="options">
+<form id="form">
 
-        <div class="options">
-            <input type="radio" id="C" name="country" value="C">
-            <label for="C" id="LabelC">C -</label>
-        </div>
+    <!-- IMAGEM -->
 
-        <div class="options">
-            <input type="radio" id="D" name="country" value="D">
-            <label for="D" id="LabelD">D -</label>
-        </div>
-        
-        <input type="submit" value="Confirmar resposta" id="submit">
-    </form>
-    <button id="btnIndex">Voltar</button>
-    <script src="scripts.js"></script>
+    <img
+    src="img/letonia.jpg"
+    class="flag-image">
+
+    <!-- GRID -->
+
+    <div class="answers">
+
+        <label class="options">
+
+            <input
+            type="radio"
+            id="A"
+            name="country"
+            value="A">
+
+            <span id="LabelA">
+                A -
+            </span>
+
+        </label>
+
+                <label class="options">
+
+            <input
+            type="radio"
+            id="B"
+            name="country"
+            value="B">
+
+            <span id="LabelB">
+                B -
+            </span>
+
+        </label>
+
+                <label class="options">
+
+            <input
+            type="radio"
+            id="C"
+            name="country"
+            value="C">
+
+            <span id="LabelC">
+                C -
+            </span>
+
+        </label>
+
+                <label class="options">
+
+            <input
+            type="radio"
+            id="D"
+            name="country"
+            value="D">
+
+            <span id="LabelD">
+                D -
+            </span>
+
+        </label>
+
+    </div>
+
+    <input
+    type="submit"
+    value="Confirmar resposta"
+    id="submit">
+
+</form>
 </body>
 </html>

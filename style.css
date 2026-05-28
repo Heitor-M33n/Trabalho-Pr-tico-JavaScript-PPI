@@ -1,0 +1,269 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    color:white;
+
+    background:
+    radial-gradient(circle at top,
+    #123d6b 0%,
+    #041428 55%,
+    #020b16 100%);
+
+    position:relative;
+}
+
+/* PARTÍCULAS */
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:200%;
+    height:200%;
+
+    background-image:
+    radial-gradient(white 1px, transparent 1px);
+
+    background-size:50px 50px;
+
+    opacity:0.04;
+
+    animation:moverFundo 30s linear infinite;
+
+    z-index:0;
+}
+
+@keyframes moverFundo{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-50px);
+    }
+}
+
+/* FUNDO */
+
+#fundo-animado{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:1;
+
+    pointer-events:none;
+}
+
+/* BANDEIRAS */
+
+.flag{
+
+    position:absolute;
+
+    opacity:0.12;
+
+    animation:fall linear infinite;
+
+    user-select:none;
+
+    pointer-events:none;
+}
+
+@keyframes fall{
+
+    from{
+        transform:
+        translateY(-120px)
+        translateX(0px)
+        rotate(0deg);
+    }
+
+    to{
+        transform:
+        translateY(120vh)
+        translateX(60px)
+        rotate(360deg);
+    }
+}
+
+/* CONTAINER */
+
+.container{
+
+    position:relative;
+
+    z-index:10;
+
+    width:600px;
+
+    padding:45px;
+
+    border-radius:24px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+    0 8px 32px rgba(0,0,0,0.35);
+
+    animation:entrada 1s ease;
+}
+
+@keyframes entrada{
+
+    from{
+        opacity:0;
+
+        transform:
+        translateY(30px)
+        scale(0.95);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+    }
+}
+
+/* TÍTULO */
+
+.container h1{
+
+    font-size:58px;
+
+    margin-bottom:20px;
+
+    font-weight:800;
+
+    text-shadow:
+    0 0 20px rgba(0,195,255,0.35);
+}
+
+/* TEXTO */
+
+.container p{
+
+    font-size:20px;
+
+    line-height:1.5;
+
+    margin-bottom:30px;
+
+    opacity:0.9;
+}
+
+/* BOTÃO */
+
+button{
+
+    padding:16px 34px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(135deg,#00c3ff,#0077ff);
+
+    color:white;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 0 20px rgba(0,195,255,0.3);
+}
+
+button:hover{
+
+    transform:
+    scale(1.07)
+    translateY(-2px);
+
+    box-shadow:
+    0 0 35px rgba(0,195,255,0.6);
+}
+
+/* =========================
+   BOTÃO MÚSICA
+========================= */
+
+#musicBtn{
+
+    position:fixed;
+
+    top:20px;
+    right:20px;
+
+    width:55px;
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    z-index:100;
+
+    color:white;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(10px);
+
+    border:
+    1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+    0 0 15px rgba(0,0,0,0.25);
+
+    transition:0.3s;
+}
+
+#musicBtn:hover{
+
+    transform:
+    scale(1.1)
+    rotate(8deg);
+
+    background:
+    rgba(255,255,255,0.15);
+}
