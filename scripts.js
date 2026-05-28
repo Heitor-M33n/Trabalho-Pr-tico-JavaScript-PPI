@@ -137,6 +137,12 @@ const perguntas = [
   }
 ];
 
+// Função para mudar entre as páginas
+const redirect = file => window.location.href = file;
+
+// Função para retornar acertos
+const acertos = () => respostas.reduce((acc, n) => {if (n) {acc++}}, 0)
+
 // Função que randomiza a ordem das perguntas e alternativas, tem um viés, substituir por outro algorítmo melhor
 function randomizar_perguntas() {
   perguntas.sort(() => Math.random() - 0.5)
@@ -148,14 +154,10 @@ function randomizar_perguntas() {
 // Função que manipula o formulário
 function alterar_pergunta() {
   const p = perguntas[respostas.length]
-  for (let i = 0; i < 4; i++) {
-    console.log(i)
-    labels[i].textContent = p.alternativas[i]
-  }
+  inputs.forEach(r => r.checked = false)
+  for (let i = 0; i < 4; i++) {labels[i].textContent = p.alternativas[i]}
+  console.log(p.correta) // temp
 }
-
-// Função para mudar entre as páginas
-const redirect = file => window.location.href = file;
 
 // Listeners para retornar ao index, con uma confirmação
 let voltar = 0;
@@ -168,10 +170,16 @@ btnIndex.addEventListener('click', () => {
 // Listener de enviar resposta da questão
 form.addEventListener('submit', (e) => {
   e.preventDefault(); // necessário para não dar um refresh na página, pois submeter um formulário causa essa ação
-  // lógica de descobrir acerto aqui...
+  const p = perguntas[respostas.length]
+  
+  // Verifica se acertou ou não, e adiciona ao array
+  let resposta = 0
+  if (inputs[p.alternativas.indexOf(p.correta)].checked) {resposta = 1}
+  else {resposta = 0}
+  respostas.push(resposta)
+  console.log(respostas, acertos()) // temp
+
   // verificação se uma alternativa foi selecionado aqui...
-  console.log('foi')
-  respostas.push(1) // temporário
   alterar_pergunta()
   }
 );
