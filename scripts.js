@@ -1,4 +1,4 @@
-/*const btnIndex = document.getElementById('btnIndex');
+const btnIndex = document.getElementById('btnIndex');
 const form = document.getElementById('form');
 const LabelA = document.getElementById('LabelA');
 const LabelB = document.getElementById('LabelB');
@@ -10,7 +10,9 @@ const C = document.getElementById('C');
 const D = document.getElementById('D');
 
 const labels = [LabelA, LabelB, LabelC, LabelD];
-const inputs = [A, B, C, D];*/
+const inputs = [A, B, C, D];
+
+let respostas = []; // para cada resposta, incrementar 0 se errou, 1 se acertou
 
 // matriz com todas as perguntas 
 const perguntas = [
@@ -144,8 +146,12 @@ function randomizar_perguntas() {
 }
 
 // Função que manipula o formulário
-function pensar_em_um_nome_function() {
-  randomizar()
+function alterar_pergunta() {
+  const p = perguntas[respostas.length]
+  for (let i = 0; i < 4; i++) {
+    console.log(i)
+    labels[i].textContent = p.alternativas[i]
+  }
 }
 
 // Função para mudar entre as páginas
@@ -161,9 +167,14 @@ btnIndex.addEventListener('click', () => {
 
 // Listener de enviar resposta da questão
 form.addEventListener('submit', (e) => {
-  e.preventDefault(); // necessário para n dar um refresh na página, pois submeter um formulário causa essa ação
-  pensar_em_um_nome_function()
-	}
+  e.preventDefault(); // necessário para não dar um refresh na página, pois submeter um formulário causa essa ação
+  // lógica de descobrir acerto aqui...
+  // verificação se uma alternativa foi selecionado aqui...
+  console.log('foi')
+  respostas.push(1) // temporário
+  alterar_pergunta()
+  }
 );
 
 randomizar_perguntas();
+alterar_pergunta();
