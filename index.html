@@ -7,10 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Quiz dos países</h1>
-    <p>Teste seus conhecimentos sobre os países do mundo identificando suas bandeiras!<br>
-        Veja cada bandeira com atenção e escolha a alternativa</p>
-    <button id="btnStart">Começar o quiz</button>
-    <script src="scripts.js"></script>
+
+    <div id="fundo-animado"></div>
+    <!-- MÚSICA -->
+
+    <audio
+        id="bgMusic"
+        loop
+        autoplay
+        muted
+    >
+
+        <source
+        src="music/ambient.mp3"
+        type="audio/mpeg">
+
+    </audio>
+
+    <!-- BOTÃO -->
+
+    <button id="musicBtn">
+        🔊
+    </button>
+    <!-- CONTEUDO DO CORPO -->
+    <div class="container">
+
+        <h1>🌍 Quiz dos Países</h1>
+
+        <p>
+            Teste seus conhecimentos sobre bandeiras
+            do mundo inteiro!
+        </p>
+
+        <button id="btnStart">
+            Começar Jornada
+        </button>
+
+    </div>
+
+    <script src="index.js"></script>
+
 </body>
 </html>
