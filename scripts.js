@@ -8,6 +8,9 @@ const A = document.getElementById('A');
 const B = document.getElementById('B');
 const C = document.getElementById('C');
 const D = document.getElementById('D');
+const img = document.getElementById('flag');
+const counter = document.getElementById('contador');
+const counterAcertos = document.getElementById('acertos');
 
 const labels = [LabelA, LabelB, LabelC, LabelD];
 const inputs = [A, B, C, D];
@@ -137,11 +140,11 @@ const perguntas = [
   }
 ];
 
-// Função para mudar entre as páginas
-const redirect = file => window.location.href = file;
+// função geral que roda no submit
+const update = () => {alterar_pergunta(); alterar_acertos()}
 
 // Função para retornar acertos
-const acertos = () => respostas.reduce((acc, n) => {if (n) {acc++}}, 0)
+const acertos = () => respostas.reduce((acc, n) => {if (n) {acc++}; return acc}, 0)
 
 // Função que randomiza a ordem das perguntas e alternativas, tem um viés, substituir por outro algorítmo melhor
 function randomizar_perguntas() {
@@ -151,21 +154,22 @@ function randomizar_perguntas() {
   })
 }
 
-// Função que manipula o formulário
-function alterar_pergunta() {
-  const p = perguntas[respostas.length]
-  inputs.forEach(r => r.checked = false)
-  for (let i = 0; i < 4; i++) {labels[i].textContent = p.alternativas[i]}
-  console.log(p.correta) // temp
+// Função que modificao header
+function alterar_acertos() {
+    counter.innerHTML = `- Pergunta ${respostas.length + 1}/20`
+    if (acertos() == 1) {counterAcertos.innerHTML = `${acertos()} Acerto`}
+    else {counterAcertos.innerHTML = `${acertos()} Acertos`}
 }
 
-// Listeners para retornar ao index, con uma confirmação
-let voltar = 0;
-btnIndex.addEventListener('click', () => {
-  if (voltar) {redirect('index.html')}
-  else {alert('Você vai perder seu progresso, tem certeza?'); voltar = 1}
-	}
-);
+// Função que manipula o formulário
+function alterar_pergunta() {
+  const p = perguntas[respostas.length];
+
+  img.src = p.path_bandeira
+  inputs.forEach(r => r.checked = false);
+  for (let i = 0; i < 4; i++) {console.log(p.alternativas[i]);labels[i].innerHTML = p.alternativas[i]}
+  console.log('correta: ', p.correta) // temp
+}
 
 // Listener de enviar resposta da questão
 form.addEventListener('submit', (e) => {
@@ -180,9 +184,9 @@ form.addEventListener('submit', (e) => {
   console.log(respostas, acertos()) // temp
 
   // verificação se uma alternativa foi selecionado aqui...
-  alterar_pergunta()
+  update();
   }
 );
 
 randomizar_perguntas();
-alterar_pergunta();
+update();
